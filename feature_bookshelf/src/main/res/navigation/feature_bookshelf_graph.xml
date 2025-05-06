@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feature_bookshelf_graph"
+    app:startDestination="@id/booksListFragment">
+
+    <fragment
+        android:id="@+id/booksListFragment"
+        android:name="com.example.features.BooksListFragment"
+        tools:layout="@layout/book_list_fragment"
+        android:label="Books List">
+    <action
+        android:id="@+id/action_booksListFragment_to_bookDetailsFragment"
+        app:destination="@+id/bookDetailsFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:exitAnim="@android:anim/slide_out_right"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/slide_out_right">
+        <argument android:name="book" app:argType="com.example.domain.model.BookModel" />
+    </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookDetailsFragment"
+        android:name="com.example.features.BookDetailsFragment"
+        tools:layout="@layout/book_details_fragment"
+        android:label="Book Details">
+        <argument android:name="book" app:argType="com.example.domain.model.BookModel" />
+    </fragment>
+</navigation>
