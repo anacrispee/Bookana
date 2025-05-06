@@ -5,4 +5,5 @@
     app:startDestination="@id/feature_bookshelf_graph">
 
     <include app:graph="@navigation/feature_bookshelf_graph" />
+    <include app:graph="@navigation/feature_explore_graph" />
 </navigation>

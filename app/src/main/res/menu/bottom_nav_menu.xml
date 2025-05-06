@@ -4,4 +4,8 @@
         android:id="@+id/feature_bookshelf_graph"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="@string/menu_item_bookshelf" />
+    <item
+        android:id="@+id/feature_explore_graph"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/menu_item_explore" />
 </menu>

@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(project(path = ":feature_bookshelf"))
+    implementation(project(path = ":feature_explore"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

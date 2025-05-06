@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/feature_bookshelf" />
+            <option value="$PROJECT_DIR$/feature_explore" />
             <option value="$PROJECT_DIR$/navigation" />
           </set>
         </option>

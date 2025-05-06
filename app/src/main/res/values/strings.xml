@@ -2,6 +2,4 @@
     <string name="app_name">Bookana</string>
     <string name="menu_item_explore">Explorar</string>
     <string name="menu_item_bookshelf">Estante</string>
-    <string name="menu_item_profile">Perfil</string>
-    <string name="menu_item_new">Novo</string>
 </resources>
