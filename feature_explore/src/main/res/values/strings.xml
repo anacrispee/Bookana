@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="book_image">Book image</string>
     <string name="books_list">Books list</string>
+    <string name="book_image">Book image</string>
 </resources>

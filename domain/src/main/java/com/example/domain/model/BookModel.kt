@@ -12,6 +12,14 @@ data class BookModel(
     val author: String
 ) : Parcelable
 
+val dummyTest = listOf<BookModel>(
+    BookModel(
+        image = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
+        name = "Batata frita",
+        author = "Cozinheiro"
+    )
+)
+
 val dummyBooksList = listOf<BookModel>(
     BookModel(
         image = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
