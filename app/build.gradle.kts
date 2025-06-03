@@ -11,13 +11,19 @@ android {
 dependencies {
     implementation(project(path = ":feature_bookshelf"))
     implementation(project(path = ":feature_explore"))
+    implementation(project(path = ":di"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+    implementation(libs.android.koinCore)
+    implementation(libs.android.koin)
+
+    testImplementation(libs.junit)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
 }

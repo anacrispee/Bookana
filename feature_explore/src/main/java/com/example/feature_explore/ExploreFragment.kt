@@ -7,15 +7,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.domain.model.BookModel
-import com.example.domain.model.dummyTest
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ExploreFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BookAdapter
+
+    private val viewModel : ExploreViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,21 +30,31 @@ class ExploreFragment : Fragment() {
         val view = inflater.inflate(R.layout.explore_fragment, container, false)
         recyclerView = view.findViewById(R.id.gridRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = BookAdapter(dummyTest)
+        adapter = BookAdapter(emptyList())
         recyclerView.adapter = adapter
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.searchBooksByName()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.books.collectLatest { books ->
+                adapter.updateBooks(books)
+            }
+        }
+    }
+
     class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(book : BookModel) {
-            itemView.findViewById<ImageView>(R.id.bookImage).load(book.image)
-            itemView.findViewById<TextView>(R.id.bookName).text = book.name
-            itemView.findViewById<TextView>(R.id.author).text = book.author
+            itemView.findViewById<ImageView>(R.id.bookImage).load(book.cover)
+            itemView.findViewById<TextView>(R.id.bookName).text = book.title
+            itemView.findViewById<TextView>(R.id.author).text = book.author.firstOrNull()
         }
     }
 
     class BookAdapter(
-        private val books: List<BookModel>
+        private var books: List<BookModel>
     ) : RecyclerView.Adapter<BookViewHolder>() {
 
         override fun onCreateViewHolder(
@@ -60,6 +75,11 @@ class ExploreFragment : Fragment() {
 
         override fun getItemCount(): Int {
             return books.size
+        }
+
+        fun updateBooks(newBooks: List<BookModel>) {
+            books = newBooks
+            notifyDataSetChanged()
         }
     }
 }

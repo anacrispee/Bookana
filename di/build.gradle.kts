@@ -9,11 +9,22 @@ android {
 }
 
 dependencies {
+    implementation(project(path = ":domain"))
+    implementation(project(path = ":data"))
+    implementation(project(path = ":data_remote"))
+    implementation(project(path = ":data_local"))
+    implementation(project(path = ":feature_explore"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.android.koin)
+    implementation(libs.android.koinCore)
+    implementation(libs.android.okhttp)
+    implementation(libs.android.retrofit2)
+
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

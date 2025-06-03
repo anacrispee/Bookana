@@ -21,9 +21,9 @@ class BookDetailsFragment : Fragment() {
 
         val args = BookDetailsFragmentArgs.fromBundle(bundle!!)
 
-        view.findViewById<ImageView>(R.id.bookImage).load(args.book.image)
-        view.findViewById<TextView>(R.id.bookName).text = args.book.name
-        view.findViewById<TextView>(R.id.author).text = args.book.author
+        view.findViewById<ImageView>(R.id.bookImage).load(args.book.cover)
+        view.findViewById<TextView>(R.id.bookName).text = args.book.title
+        view.findViewById<TextView>(R.id.author).text = args.book.author.firstOrNull()
 
         return view.rootView
     }
