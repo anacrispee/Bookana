@@ -18,7 +18,7 @@ val dataRemoteModule = module {
     single {
         WebServiceFactory.createWebService(
             okHttpClient = get(),
-            url = Routes.OPEN_LIBRARY_DOMAIN
+            url = Routes.GOOGLE_BOOKS_ROUTE
         ) as BooksService
     }
 

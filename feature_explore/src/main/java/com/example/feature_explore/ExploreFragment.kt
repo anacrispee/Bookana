@@ -47,9 +47,9 @@ class ExploreFragment : Fragment() {
 
     class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(book : BookModel) {
-            itemView.findViewById<ImageView>(R.id.bookImage).load(book.cover)
-            itemView.findViewById<TextView>(R.id.bookName).text = book.title
-            itemView.findViewById<TextView>(R.id.author).text = book.author.firstOrNull()
+            itemView.findViewById<ImageView>(R.id.bookImage).load(book.information?.cover)
+            itemView.findViewById<TextView>(R.id.bookName).text = book.information?.title
+            itemView.findViewById<TextView>(R.id.author).text = book.information?.authors?.firstOrNull()
         }
     }
 

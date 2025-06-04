@@ -7,63 +7,41 @@ import kotlinx.parcelize.Parcelize
 @Keep
 @Parcelize
 data class BookModel(
-    val cover: String,
-    val title: String,
-    val author: List<String>
+    val information: InformationModel? = null
 ) : Parcelable
 
-val dummyTest = listOf<BookModel>(
-    BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
-        title = "Batata frita",
-        author = listOf("Cozinheiro")
-    )
-)
+@Keep
+@Parcelize
+data class InformationModel(
+    val title: String? = null,
+    val subtitle: String? = null,
+    val authors: List<String>? = null,
+    val cover: String? = null
+) : Parcelable
 
-val dummyBooksList = listOf<BookModel>(
+val dummyBooksList = listOf(
     BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
-        title = "Jogos Vorazes",
-        author = listOf("Suzanne Collins")
+        information = InformationModel(
+            title = "Jogos Vorazes",
+            subtitle = "Vol. 1",
+            authors = listOf("Suzanne Collins"),
+            cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg"
+        )
     ),
     BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg",
-        title = "Harry Potter e a Ordem da Fênix",
-        author =listOf( "J.K. Rowling")
+        information = InformationModel(
+            title = "Harry Potter e a Ordem da Fênix",
+            subtitle = "Vol. 5",
+            authors = listOf("J.K. Rowling"),
+            cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg"
+        )
     ),
     BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg",
-        title = "Crepúsculo",
-        author = listOf("Stephenie Mayer")
-    ),
-    BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
-        title = "Jogos Vorazes",
-        author = listOf("Suzanne Collins")
-    ),
-    BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg",
-        title = "Harry Potter e a Ordem da Fênix",
-        author = listOf("J.K. Rowling")
-    ),
-    BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg",
-        title = "Crepúsculo",
-        author = listOf("Stephenie Mayer")
-    ),
-    BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
-        title = "Jogos Vorazes",
-        author = listOf("Suzanne Collins")
-    ),
-    BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg",
-        title = "Harry Potter e a Ordem da Fênix",
-        author = listOf("J.K. Rowling")
-    ),
-    BookModel(
-        cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg",
-        title = "Crepúsculo",
-        author = listOf("Stephenie Mayer")
+        information = InformationModel(
+            title = "Crepúsculo",
+            subtitle = "Saga Crepúsculo",
+            authors = listOf("Stephenie Meyer"),
+            cover = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg"
+        )
     )
 )
