@@ -14,17 +14,23 @@ class ExploreViewModel : ViewModel(), KoinComponent {
     private val searchBooksByNameUseCases : SearchBooksByNameUseCases by inject { parametersOf(viewModelScope) }
 
     private val _books = MutableStateFlow<List<BookModel>>(emptyList())
+    private val _isLoading = MutableStateFlow(false)
+
     val books: StateFlow<List<BookModel>> = _books
+    val isLoading: StateFlow<Boolean> = _isLoading
 
     fun searchBooksByName(
         name: String = "Harry Potter"
     ) {
+        _isLoading.value = true
         searchBooksByNameUseCases(
             params = name,
             onSuccess = {
+                _isLoading.value = false
                 _books.value = it
             },
             onError = {
+                _isLoading.value = false
             }
         )
     }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,7 @@ class ExploreFragment : Fragment() {
     private lateinit var adapter: BookAdapter
 
     private val viewModel : ExploreViewModel by viewModel()
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +31,7 @@ class ExploreFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.explore_fragment, container, false)
         recyclerView = view.findViewById(R.id.gridRecyclerView)
+        progressBar = view.findViewById(R.id.progressBar)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = BookAdapter(emptyList())
         recyclerView.adapter = adapter
@@ -37,10 +40,15 @@ class ExploreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.searchBooksByName()
+        if (viewModel.books.value.isEmpty()) viewModel.searchBooksByName()
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.books.collectLatest { books ->
                 adapter.updateBooks(books)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isLoading.collectLatest { isLoading ->
+                progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
             }
         }
     }
