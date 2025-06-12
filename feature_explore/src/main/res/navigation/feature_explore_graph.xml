@@ -9,6 +9,6 @@
         android:id="@+id/exploreFragment"
         android:name="com.example.feature_explore.ExploreFragment"
         tools:layout="@layout/explore_fragment"
-        android:label="Explore">
+        android:label="Explorar">
     </fragment>
 </navigation>

@@ -10,7 +10,8 @@ data class InformationResponse(
     @SerializedName("title") val title: String? = null,
     @SerializedName("subtitle") val subtitle: String? = null,
     @SerializedName("authors") val authors: List<String>? = null,
-    @SerializedName("imageLinks") val imageLinks: ImageLinksResponse? = null
+    @SerializedName("imageLinks") val imageLinks: ImageLinksResponse? = null,
+    @SerializedName("pageCount") val pageCount: Int? = null
 )
 
 data class ImageLinksResponse(

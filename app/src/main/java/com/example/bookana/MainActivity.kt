@@ -3,8 +3,10 @@ package com.example.bookana
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.bookana.utils.FragmentsLabels
 import com.example.di.dataModule
 import com.example.di.dataRemoteModule
 import com.example.di.domainModule
@@ -26,20 +28,39 @@ class MainActivity : AppCompatActivity() {
                 )
             ).androidContext(applicationContext)
         }
+
         setContentView(R.layout.activity_main)
 
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(toolbar)
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-
         navController.setGraph(R.navigation.main_nav_graph)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigation.setupWithNavController(navController)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             supportActionBar?.title = destination.label
-        }
 
+            showToolBarBackAction(destination)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    private fun showToolBarBackAction(
+        destination: NavDestination
+    ) {
+        if (destination.label == FragmentsLabels.BOOK_DETAILS_FRAGMENT_LABEL) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        } else {
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        }
     }
 }

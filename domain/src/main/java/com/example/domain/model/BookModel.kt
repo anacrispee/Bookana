@@ -16,7 +16,8 @@ data class InformationModel(
     val title: String? = null,
     val subtitle: String? = null,
     val authors: List<String>? = null,
-    val cover: String? = null
+    val cover: String? = null,
+    val pageCount: Int? = null
 ) : Parcelable
 
 val dummyBooksList = listOf(

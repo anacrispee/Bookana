@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import coil.load
+import com.example.domain.utils.replaceWithEllipsis
 
 class BookDetailsFragment : Fragment() {
 
@@ -25,6 +27,18 @@ class BookDetailsFragment : Fragment() {
         view.findViewById<TextView>(R.id.bookName).text = args.book.information?.title
         view.findViewById<TextView>(R.id.author).text = args.book.information?.authors?.firstOrNull()
 
-        return view.rootView
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setBookNameAsToolbarTitle()
+    }
+
+    private fun setBookNameAsToolbarTitle() {
+        val args = BookDetailsFragmentArgs.fromBundle(requireArguments())
+        val bookName = args.book.information?.title?.replaceWithEllipsis()
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = bookName
     }
 }
