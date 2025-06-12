@@ -15,6 +15,7 @@ retrofitVersion = "2.9.0"
 koinVersion = "3.5.6"
 coroutineVersion = "1.6.1"
 httpInterceptorVersion = "4.10.0"
+roomVersion = "2.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,3 +41,7 @@ android-gsonConvertFacotory = { group = "com.squareup.retrofit2", name = "conver
 # DI
 android-koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }
 android-koinCore = { group = "io.insert-koin", name = "koin-core", version.ref = "koinVersion" }
+
+# Room
+androidx-room = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }

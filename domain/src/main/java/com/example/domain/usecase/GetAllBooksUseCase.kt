@@ -4,14 +4,13 @@ import com.example.domain.model.BookModel
 import com.example.domain.repository.BooksRepository
 import com.example.domain.usecase.core.UseCase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 
-class SearchBooksByNameUseCases(
+class GetAllBooksUseCase(
     scope: CoroutineScope,
     private val repository: BooksRepository
-) : UseCase<List<BookModel>, String>(scope) {
+) : UseCase<List<BookModel>, Unit>(scope) {
 
-    override fun run(params: String?) = when (params) {
-        null -> throw RuntimeException("Params must not be null")
-        else -> repository.searchBooks(query = params)
-    }
+    override fun run(params: Unit?): Flow<List<BookModel>> =
+        repository.getAllBooks()
 }

@@ -14,6 +14,7 @@ dependencies {
     implementation(project(path = ":data_remote"))
     implementation(project(path = ":data_local"))
     implementation(project(path = ":feature_explore"))
+    implementation(project(path = ":feature_bookshelf"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -22,6 +23,7 @@ dependencies {
     implementation(libs.android.koinCore)
     implementation(libs.android.okhttp)
     implementation(libs.android.retrofit2)
+    implementation(libs.androidx.room)
 
     testImplementation(libs.junit)
 
