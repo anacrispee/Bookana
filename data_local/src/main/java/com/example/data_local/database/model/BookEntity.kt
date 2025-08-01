@@ -1,13 +1,15 @@
 package com.example.data_local.database.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "Books")
 data class BookEntity(
-    val title: String? = null,
-    val subtitle: String? = null,
-    val authors: List<String>? = null,
-    val image: String? = null,
-    val currentPage: Int? = null,
-    val totalPages: Int? = null
+    @PrimaryKey val title: String? = null,
+    @ColumnInfo(name = "subtitle") val subtitle: String? = null,
+    @ColumnInfo(name = "authors") val authors: String? = null,
+    @ColumnInfo(name = "image") val image: String? = null,
+    @ColumnInfo(name = "currentPage") val currentPage: Int? = null,
+    @ColumnInfo(name = "totalPages") val totalPages: Int? = null
 )

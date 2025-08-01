@@ -4,6 +4,7 @@ import com.example.domain.repository.BooksRepository
 import com.example.domain.usecase.core.UseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class DeleteBookUseCase(
     scope: CoroutineScope,
@@ -11,5 +12,5 @@ class DeleteBookUseCase(
 ) : UseCase<Unit, String>(scope) {
 
     override fun run(params: String?): Flow<Unit> =
-        repository.deleteBook(params.orEmpty())
+        flowOf(repository.deleteBook(params.orEmpty()))
 }

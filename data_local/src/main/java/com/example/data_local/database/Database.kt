@@ -11,5 +11,5 @@ import com.example.data_local.database.model.BookEntity
     version = 1
 )
 abstract class Database : RoomDatabase() {
-    abstract fun BookDao() : BookDao
+    abstract fun bookDao() : BookDao
 }

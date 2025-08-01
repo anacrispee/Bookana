@@ -14,15 +14,13 @@ class BooksRepositoryImpl(
     override fun searchBooks(query: String) : Flow<List<BookModel>> =
         remoteDataSource.searchBook(query)
 
-    override fun addNewBook(model: BookModel) : Flow<Unit> =
+    override fun addNewBook(model: BookModel) =
         localDataSource.addNewBook(model)
 
-    override fun getAllBooks():Flow<List<BookModel>> =
+    override fun getAllBooks(): Flow<List<BookModel>> =
         localDataSource.getAllBooks()
 
-    override fun deleteBook(title: String) : Flow<Unit> =
-        localDataSource.deleteBook(title)
+    override fun deleteBook(title: String) : Unit = localDataSource.deleteBook(title)
 
-    override fun updateBook(model: BookModel) : Flow<Unit> =
-        localDataSource.updateBook(model)
+    override fun updateBook(model: BookModel) : Unit = localDataSource.updateBook(model)
 }

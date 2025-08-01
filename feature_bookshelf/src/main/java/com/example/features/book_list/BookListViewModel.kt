@@ -20,6 +20,15 @@ class BookListViewModel : ViewModel(), KoinComponent {
     val isLoading: StateFlow<Boolean> = _isLoading
 
     private fun getAllBooksUseCase() {
-
+        _isLoading.value = true
+        getAllBooksUseCase(
+            onSuccess = {
+                _books.value = it
+                _isLoading.value = false
+            },
+            onError = {
+                _isLoading.value = false
+            }
+        )
     }
 }
