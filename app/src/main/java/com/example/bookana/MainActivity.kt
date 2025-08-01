@@ -7,32 +7,11 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.bookana.utils.FragmentsLabels
-import com.example.di.dataLocalModule
-import com.example.di.dataModule
-import com.example.di.dataRemoteModule
-import com.example.di.databaseModule
-import com.example.di.domainModule
-import com.example.di.presentationModule
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.koin.core.context.startKoin
-import org.koin.android.ext.koin.androidContext
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startKoin {
-            modules(
-                listOf(
-                    dataModule,
-                    domainModule,
-                    presentationModule,
-                    dataRemoteModule,
-                    dataLocalModule,
-                    databaseModule
-                )
-            ).androidContext(applicationContext)
-        }
-
         setContentView(R.layout.activity_main)
 
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
