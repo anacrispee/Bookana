@@ -5,5 +5,5 @@ import com.example.domain.repository.BooksRepository
 import org.koin.dsl.module
 
 val dataModule = module {
-    single<BooksRepository> { BooksRepositoryImpl(get(), get()) }
+    single<BooksRepository> { BooksRepositoryImpl(get()) }
 }

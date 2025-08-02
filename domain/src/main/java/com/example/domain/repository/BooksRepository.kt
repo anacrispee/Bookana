@@ -5,8 +5,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface BooksRepository {
     fun searchBooks(query: String) : Flow<List<BookModel>>
-    fun addNewBook(model: BookModel)
-    fun getAllBooks(): Flow<List<BookModel>>
-    fun deleteBook(title: String)
-    fun updateBook(model: BookModel)
 }
