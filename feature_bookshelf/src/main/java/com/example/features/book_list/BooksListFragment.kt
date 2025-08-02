@@ -8,13 +8,14 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.domain.model.BookModel
-import com.example.domain.model.dummyBooksList
 import com.example.features.R
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BooksListFragment : Fragment() {
@@ -32,13 +33,24 @@ class BooksListFragment : Fragment() {
         val view = inflater.inflate(R.layout.book_list_fragment, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = BookAdapter(dummyBooksList) { selectedBook ->
-            val action = BooksListFragmentDirections
-                .actionBooksListFragmentToBookDetailsFragment(selectedBook)
-            findNavController().navigate(action)
-        }
+        adapter = BookAdapter(emptyList())
+//        { selectedBook ->
+//            val action = BooksListFragmentDirections
+//                .actionBooksListFragmentToBookDetailsFragment(selectedBook)
+//            findNavController().navigate(action)
+//        }
         recyclerView.adapter = adapter
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (viewModel.books.value.isEmpty()) viewModel.getAllMyBooks()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.books.collectLatest { books ->
+                adapter.updateBooks(books)
+            }
+        }
     }
 
     class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -50,8 +62,8 @@ class BooksListFragment : Fragment() {
     }
 
     class BookAdapter(
-        private val books: List<BookModel>,
-        private val onItemClick: (BookModel) -> Unit
+        private var books: List<BookModel>,
+        private val onItemClick: (BookModel) -> Unit = {}
     ) : RecyclerView.Adapter<BookViewHolder>() {
 
         override fun onCreateViewHolder(
@@ -75,6 +87,12 @@ class BooksListFragment : Fragment() {
 
         override fun getItemCount(): Int {
             return books.size
+        }
+
+
+        fun updateBooks(newBooks: List<BookModel>) {
+            books = newBooks
+            notifyDataSetChanged()
         }
     }
 }
