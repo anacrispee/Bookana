@@ -22,6 +22,8 @@ class ExploreViewModel : ViewModel(), KoinComponent {
     fun searchBooksByName(
         name: String = "Harry Potter"
     ) {
+        if (books.value.isEmpty().not()) return
+
         _isLoading.value = true
         searchBooksByNameUseCases(
             params = name,

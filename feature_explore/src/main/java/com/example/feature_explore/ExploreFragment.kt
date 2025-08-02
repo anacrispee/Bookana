@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.domain.model.BookModel
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +24,7 @@ class ExploreFragment : Fragment() {
 
     private val viewModel : ExploreViewModel by viewModel()
     private lateinit var progressBar: ProgressBar
+    private lateinit var emptyStateView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,8 +32,11 @@ class ExploreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.explore_fragment, container, false)
+
         recyclerView = view.findViewById(R.id.gridRecyclerView)
         progressBar = view.findViewById(R.id.progressBar)
+        emptyStateView = view.findViewById(R.id.emptyStateLayout)
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = BookAdapter(emptyList())
         recyclerView.adapter = adapter
@@ -40,16 +45,34 @@ class ExploreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (viewModel.books.value.isEmpty()) viewModel.searchBooksByName()
+        viewModel.searchBooksByName()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.books.collectLatest { books ->
                 adapter.updateBooks(books)
             }
         }
+
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.isLoading.collectLatest { isLoading ->
+            viewModel.isLoading.combine(viewModel.books) { isLoading, books ->
+                isLoading to books
+            }.collectLatest { (isLoading, books) ->
                 progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+
+                if (isLoading) {
+                    recyclerView.visibility = View.GONE
+                    emptyStateView.visibility = View.GONE
+                } else {
+                    if (books.isEmpty()) {
+                        recyclerView.visibility = View.GONE
+                        emptyStateView.visibility = View.VISIBLE
+                    } else {
+                        recyclerView.visibility = View.VISIBLE
+                        emptyStateView.visibility = View.GONE
+                    }
+                }
             }
+
         }
     }
 

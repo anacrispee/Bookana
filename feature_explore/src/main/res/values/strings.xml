@@ -2,4 +2,8 @@
 <resources>
     <string name="books_list">Books list</string>
     <string name="book_image">Book image</string>
+    <string name="explore_empty_state_title">Sem resultados encontrados</string>
+    <string name="explore_empty_state_description">Desculpe, não há resultados para esta pesquisa</string>
+    <color name="secondary_dark">#FF667085</color>
+    <color name="secondary_darker">#FF101828</color>
 </resources>
