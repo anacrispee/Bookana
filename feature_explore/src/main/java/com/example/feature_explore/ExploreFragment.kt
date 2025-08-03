@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -70,7 +71,10 @@ class ExploreFragment : Fragment() {
                                 showContent()
                             }
                             is UiState.Empty -> showEmptyState()
-                            is UiState.Error -> {} //showErrorState()
+                            is UiState.Error -> {
+                                updateErrorDescription()
+                                showNetworkErrorState()
+                            }
                         }
                     }
                 }
@@ -111,5 +115,10 @@ class ExploreFragment : Fragment() {
             showLoadingState()
             checkNetworkAndLoadData()
         }
+    }
+
+    private fun updateErrorDescription() {
+        val errorDescriptionTextView = networkErrorView.findViewById<TextView>(R.id.emptyStateDescription)
+        errorDescriptionTextView.text = getString(R.string.generic_error_description)
     }
 }

@@ -6,6 +6,7 @@
     <string name="explore_empty_state_description">Desculpe, não há resultados para esta pesquisa</string>
     <string name="connection_error_title">Ops! Algo deu errado.</string>
     <string name="connection_error_description">Verifique sua conexão com a internet e tente novamente</string>
+    <string name="generic_error_description">Estamos trabalhando para melhorar, tente novamente mais tarde</string>
     <string name="connection_error_button">Tentar novamente</string>
     <color name="secondary_dark">#FF667085</color>
     <color name="secondary_darker">#FF101828</color>
