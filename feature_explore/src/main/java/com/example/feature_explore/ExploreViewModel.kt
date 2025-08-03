@@ -13,26 +13,22 @@ import org.koin.core.parameter.parametersOf
 class ExploreViewModel : ViewModel(), KoinComponent {
     private val searchBooksByNameUseCases : SearchBooksByNameUseCases by inject { parametersOf(viewModelScope) }
 
-    private val _books = MutableStateFlow<List<BookModel>>(emptyList())
-    private val _isLoading = MutableStateFlow(false)
-
-    val books: StateFlow<List<BookModel>> = _books
-    val isLoading: StateFlow<Boolean> = _isLoading
+    private val _uiState = MutableStateFlow<UiState<List<BookModel>>>(UiState.Loading)
+    val uiState: StateFlow<UiState<List<BookModel>>> = _uiState
 
     fun searchBooksByName(
         name: String = "Harry Potter"
     ) {
-        if (books.value.isEmpty().not()) return
+        if (uiState.value is UiState.Empty) return
+        _uiState.value = UiState.Loading
 
-        _isLoading.value = true
         searchBooksByNameUseCases(
             params = name,
-            onSuccess = {
-                _isLoading.value = false
-                _books.value = it
+            onSuccess = { books ->
+                _uiState.value = if (books.isEmpty()) UiState.Empty else UiState.Success(books)
             },
             onError = {
-                _isLoading.value = false
+                _uiState.value = UiState.Error
             }
         )
     }

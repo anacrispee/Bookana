@@ -9,4 +9,6 @@
     <string name="connection_error_button">Tentar novamente</string>
     <color name="secondary_dark">#FF667085</color>
     <color name="secondary_darker">#FF101828</color>
+    <color name="primary_medium">#FFFF8960</color>
+    <color name="primary_first">#FFFF62A5</color>
 </resources>
