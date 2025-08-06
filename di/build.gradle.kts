@@ -24,6 +24,8 @@ dependencies {
     implementation(libs.android.okhttp)
     implementation(libs.android.retrofit2)
     implementation(libs.androidx.room)
+    implementation(libs.sql.chipher)
+    implementation(libs.androidx.preference)
 
     testImplementation(libs.junit)
 

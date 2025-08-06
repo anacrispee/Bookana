@@ -18,6 +18,7 @@ dependencies {
     implementation(libs.androidx.room)
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
+    implementation(libs.sql.chipher)
 
     testImplementation(libs.junit)
 
