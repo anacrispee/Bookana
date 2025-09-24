@@ -1,30 +1,24 @@
 # Bookana
 
-This is an Android app in active development, designed to help you explore and organize your favorite books.
+Este é um projeto de estudo de um app Android focado em livros.
 
----
+## ⚠️ Status do Projeto: Em Andamento
 
-## ⚠️ Project Status: In Progress 🔨
+O app ainda está em desenvolvimento.
 
-This project is under active development. New features, improvements, and bug fixes are being implemented continuously. Feel free to follow our progress!
+## Tecnologias Principais
 
----
-
-## Technologies & Architecture
-
-Bookana is built on a solid technological foundation to ensure clean, scalable, and maintainable code.
-
-* **Kotlin**
+ **Kotlin**
 * **MVVM (Model-View-ViewModel)**
 * **Koin**
-* **Retrofit**: Responsible for all our network requests, to consume APIs for the **book exploration** feature.
-* **Room**: A data persistence library that facilitates local storage. Essential for the **saving books to the bookshelf** feature.
-* **Multi-module Architecture**: The project is divided into modules. This structure ensures a clear separation of concerns, facilitating collaboration and scalability.
-* **Custom Gradle Plugin**: custom Gradle plugin to centralize build configurations across all modules. This prevents code duplication and standardizes the development environment.
+* **Retrofit**: Responsável por todas as requisições, para consumir APIs para a funcionalidade de **explorar livros**.
+* **Room**: Uma biblioteca de persistência de dados que facilita o armazenamento local, para a funcionalidade de **salvar livros na estante**.
+* **Cipher**: Garantir a criptografia e segurança dos dados armazenados localmente.
+* **Arquitetura Multimódulo**: O projeto é dividido em módulos. Esta estrutura garante uma clara separação de preocupações, facilitando a colaboração e a escalabilidade.
+* **Plugin Gradle Personalizado**: plugin Gradle customizado para centralizar as configurações de build em todos os módulos. Isso evita a duplicação de código e padroniza o ambiente de desenvolvimento.
+* **XML para construção de UI**
 
----
+## Funcionalidades
 
-## Current Features
-
-* **Explore Books**: Search for books through an external API and view their details.
-* **Save to Bookshelf**: Save your favorite books to a virtual bookshelf, which is stored locally on your device.
+* **Explorar Livros**: Pesquise livros na internet.
+* **Salvar na Estante**: Guarde seus livros favoritos em uma lista.
