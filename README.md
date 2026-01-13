@@ -2,10 +2,6 @@
 
 Este é um projeto de estudo de um app Android focado em livros.
 
-## ⚠️ Status do Projeto: Em Andamento
-
-O app ainda está em desenvolvimento.
-
 ## Tecnologias Principais
 
  **Kotlin**
